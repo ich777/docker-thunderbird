@@ -1,4 +1,4 @@
-FROM ich777/novnc-baseimage:arm64
+FROM ich777/novnc-baseimage:armv7
 
 LABEL maintainer="admin@minenet.at"
 
