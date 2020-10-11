@@ -1,0 +1,5 @@
+[app] (Title=.*)
+  [Layer]	{2}
+  [Maximized]	{yes}
+  [Deco]	{none}
+[end]
