@@ -31,7 +31,7 @@ if [ -z "$CUR_V" ]; then
 elif [ "$CUR_V" != "$LAT_V" ]; then
 	echo "---Version missmatch, installed v$CUR_V, downloading and installing latest v$LAT_V...---"
     cd ${DATA_DIR}
-	find . -maxdepth 1 ! -name profile -exec rm -r {} \; 2>/dev/null
+	find . -maxdepth 1 ! -name profile -exec rm -rf {} \; 2>/dev/null
 	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Thunderbird-$LAT_V-$THUNDERBIRD_LANG.tar.bz2 "https://archive.mozilla.org/pub/thunderbird/releases/${THUNDERBIRD_V}/linux-x86_64/${THUNDERBIRD_LANG}/thunderbird-${THUNDERBIRD_V}.tar.bz2" ; then
 		echo "---Sucessfully downloaded Thunderbird---"
 	else
