@@ -86,8 +86,6 @@ echo "---Starting noVNC server---"
 websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5900
 sleep 2
 
-sleep infinity
-
 echo "---Starting Thunderbird---"
 cd ${DATA_DIR}
 ${DATA_DIR}/thunderbird --display=:99 --profile ${DATA_DIR}/profile --P ${USER} --setDefaultMail ${EXTRA_PARAMETERS}
