@@ -26,7 +26,7 @@ RUN mkdir $DATA_DIR && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
-#COPY /icons/* /usr/share/novnc/app/images/icons/
+COPY /icons/* /usr/share/novnc/app/images/icons/
 COPY /conf/ /etc/.fluxbox/
 RUN chmod -R 770 /opt/scripts/
 
