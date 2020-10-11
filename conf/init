@@ -1,0 +1,7 @@
+! If you're looking for settings to configure, they won't be saved here until
+! you change something in the fluxbox configuration menu.
+
+session.styleFile: /usr/share/fluxbox/styles//Squared_for_Debian
+session.configVersion:	13
+session.screen0.toolbar.autoHide:       false
+session.screen0.toolbar.visible:        false
