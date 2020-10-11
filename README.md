@@ -30,7 +30,7 @@ docker run --name Thunderbird -d \
 	--env 'CUSTOM_RES_H=768' \
 	--env 'UID=99' \
 	--env 'GID=100' \
-    --env 'UMASK=000' \
+	--env 'UMASK=000' \
 	--env 'DATA_PERM=770' \
 	--volume /mnt/cache/appdata/thunderbird:/thunderbird \
 	ich777/thunderbird
