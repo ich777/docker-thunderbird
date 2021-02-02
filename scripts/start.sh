@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 echo "---Checking if UID: ${UID} matches user---"
 usermod -u ${UID} ${USER}
 echo "---Checking if GID: ${GID} matches user---"
@@ -15,6 +14,9 @@ if [ -f /opt/scripts/user.sh ]; then
 else
 	echo "---No optional script found, continuing---"
 fi
+
+echo "---Checking configuration for noVNC---"
+novnccheck
 
 echo "---Starting...---"
 chown -R ${UID}:${GID} /opt/scripts
