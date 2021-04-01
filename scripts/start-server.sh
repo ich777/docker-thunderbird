@@ -73,6 +73,9 @@ echo "---Checking for old display lock files---"
 rm -rf /tmp/.X99*
 rm -rf /tmp/.X11*
 rm -rf ${DATA_DIR}/.vnc/*.log ${DATA_DIR}/.vnc/*.pid
+if [ -f ${DATA_DIR}/.vnc/passwd ]; then
+	chmod 600 ${DATA_DIR}/.vnc/passwd
+fi
 screen -wipe 2&>/dev/null
 
 chmod -R ${DATA_PERM} ${DATA_DIR}
