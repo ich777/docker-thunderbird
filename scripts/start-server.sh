@@ -18,6 +18,8 @@ if [ "${THUNDERBIRD_V}" == "latest" ]; then
 	fi
 fi
 
+rm -R ${DATA_DIR}/Thunderbird-*.tar.bz2
+
 echo "---Version Check---"
 if [ -z "$CUR_V" ]; then
 	echo "---Thunderbird not installed, installing---"
