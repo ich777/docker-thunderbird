@@ -35,7 +35,7 @@ docker run --name Thunderbird -d \
 	--volume /mnt/cache/appdata/thunderbird:/thunderbird \
 	ich777/thunderbird
 ```
-### Webgui address: http://[SERVERIP]:[PORT]/vnc_auto.html
+### Webgui address: http://[SERVERIP]:[PORT]/vnc.html?autoconnect=true
 
 This Docker was mainly edited for better use with Unraid, if you don't use Unraid you should definitely try it!
 
