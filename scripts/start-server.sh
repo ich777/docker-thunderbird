@@ -1,6 +1,5 @@
 #!/bin/bash
 export DISPLAY=:99
-export XAUTHORITY=${DATA_DIR}/.Xauthority
 
 echo "---Preparing Server---"
 if [ ! -d ${DATA_DIR}/profile ]; then
@@ -31,8 +30,11 @@ screen -wipe 2&>/dev/null
 
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
-echo "---Starting TurboVNC server---"
-vncserver -geometry ${CUSTOM_RES_W}x${CUSTOM_RES_H} -depth ${CUSTOM_DEPTH} :99 -rfbport ${RFB_PORT} -noxstartup ${TURBOVNC_PARAMS} 2>/dev/null
+echo "---Starting Xvfb server---"
+screen -S Xvfb -L -Logfile ${DATA_DIR}/XvfbLog.0 -d -m /opt/scripts/start-Xvfb.sh
+sleep 2
+echo "---Starting x11vnc server---"
+screen -S x11vnc -L -Logfile ${DATA_DIR}/x11vncLog.0 -d -m /opt/scripts/start-x11.sh
 sleep 2
 echo "---Starting Fluxbox---"
 screen -d -m env HOME=/etc /usr/bin/fluxbox
