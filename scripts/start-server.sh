@@ -1,5 +1,6 @@
 #!/bin/bash
 export DISPLAY=:99
+export XAUTHORITY=${DATA_DIR}/.Xauthority
 
 echo "---Preparing Server---"
 if [ ! -d ${DATA_DIR}/profile ]; then
