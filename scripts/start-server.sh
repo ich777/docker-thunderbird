@@ -82,7 +82,6 @@ fi
 screen -wipe 2&>/dev/null
 
 echo "---Starting TurboVNC server---"
-echo -e "${VNC_PASSWORD}\n${VNC_PASSWORD}\nn\n" | vncpasswd
 vncserver -geometry ${CUSTOM_RES_W}x${CUSTOM_RES_H} -depth ${CUSTOM_DEPTH} :99 -rfbport ${RFB_PORT} -noxstartup ${TURBOVNC_PARAMS} 2>/dev/null
 sleep 2
 echo "---Starting Fluxbox---"
