@@ -4,4 +4,5 @@
 session.styleFile: /usr/share/fluxbox/styles//Squared_for_Debian
 session.configVersion:	13
 session.screen0.toolbar.autoHide:       false
-session.screen0.toolbar.visible:        false
+session.screen0.toolbar.visible:        true
+session.screen0.toolbar.tools:	        iconbar
