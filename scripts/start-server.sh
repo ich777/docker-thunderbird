@@ -85,7 +85,7 @@ echo "---Starting TurboVNC server---"
 vncserver -geometry ${CUSTOM_RES_W}x${CUSTOM_RES_H} -depth ${CUSTOM_DEPTH} :99 -rfbport ${RFB_PORT} -noxstartup ${TURBOVNC_PARAMS} 2>/dev/null
 sleep 2
 echo "---Starting Fluxbox---"
-screen -d -m env HOME=/etc /usr/bin/fluxbox
+/opt/scripts/start-fluxbox.sh &
 sleep 2
 echo "---Starting noVNC server---"
 websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem ${NOVNC_PORT} localhost:${RFB_PORT}
