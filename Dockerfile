@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source="https://github.com/ich777/docker-thunderb
 
 RUN export TZ=Europe/Rome && \
 	apt-get update && \
-	apt-get -y install --no-install-recommends bzip2 libgtk-3-0 libdbus-glib-1-2 ttf-wqy-zenhei fonts-wqy-microhei fonts-takao fonts-arphic-uming fonts-noto-cjk && \
+	apt-get -y install --no-install-recommends bzip2 libgtk-3-0 libdbus-glib-1-2 ttf-wqy-zenhei fonts-wqy-microhei fonts-takao fonts-arphic-uming fonts-noto-cjk libasound2 && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
 	rm -rf /var/lib/apt/lists/* && \
