@@ -26,6 +26,7 @@ docker run --name Thunderbird -d \
 	-p 8080:8080 \
 	--env 'THUNDERBIRD_V=latest' \
 	--env 'THUNDERBIRD_LANG=en-US' \
+	--env 'TURBOVNC_PARAMS=-securitytypes none' \
 	--env 'CUSTOM_RES_W=1280' \
 	--env 'CUSTOM_RES_H=768' \
 	--env 'UID=99' \
