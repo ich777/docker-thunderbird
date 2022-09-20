@@ -3,24 +3,24 @@ export DISPLAY=:99
 export XAUTHORITY=${DATA_DIR}/.Xauthority
 
 CUR_V="$(${DATA_DIR}/thunderbird --version 2>/dev/null | cut -d ' ' -f3)"
-if [ "${THUNDERBIRD_V}" == "latest" ]; then
-	LAT_V="$(wget -qO- https://github.com/ich777/versions/raw/master/Thunderbird | grep LATEST | cut -d '=' -f2)"
-	sleep 2
-	THUNDERBIRD_V="${LAT_V}"
-	if [ -z "$LAT_V" ]; then
-		if [ ! -z "$CUR_V" ]; then
-			echo "---Can't get latest version of Thunderbird falling back to v$CUR_V---"
-			LAT_V="$CUR_V"
-		else
-			echo "---Something went wrong, can't get latest version of Thunderbird, putting container into sleep mode---"
+if [ -z "$CUR_V" ]; then
+	if [ "${THUNDERBIRD_V}" == "latest" ]; then
+		LAT_V="102.2.2"
+	fi
+else
+	if [ "${THUNDERBIRD_V}" == "latest" ]; then
+		LAT_V="$CUR_V"
+		if [ -z "$LAT_V" ]; then
+			echo "Something went horribly wrong with version detection, putting container into sleep mode..."
 			sleep infinity
 		fi
+	else
+		LAT_V="$TUNDERBIRD_V"
 	fi
 fi
 
 rm -R ${DATA_DIR}/Thunderbird-*.tar.bz2 2>/dev/null
 
-echo "---Version Check---"
 if [ -z "$CUR_V" ]; then
 	echo "---Thunderbird not installed, installing---"
 	cd ${DATA_DIR}
@@ -44,8 +44,8 @@ elif [ "$CUR_V" != "$LAT_V" ]; then
 	fi
 	tar -C ${DATA_DIR} --strip-components=1 -xf ${DATA_DIR}/Thunderbird-$LAT_V-$THUNDERBIRD_LANG.tar.bz2
 	rm -R ${DATA_DIR}/Thunderbird-$LAT_V-$THUNDERBIRD_LANG.tar.bz2
-elif [ "$CUR_V" == "$LAT_V" ]; then
-	echo "---Thunderbird v$CUR_V up-to-date---"
+#elif [ "$CUR_V" == "$LAT_V" ]; then
+#	echo "---Thunderbird v$CUR_V up-to-date---"
 fi
 
 echo "---Preparing Server---"
