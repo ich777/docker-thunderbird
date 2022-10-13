@@ -19,6 +19,8 @@ else
 	fi
 fi
 
+THUNDERBIRD_V=$LAT_V
+
 rm -R ${DATA_DIR}/Thunderbird-*.tar.bz2 2>/dev/null
 
 if [ -z "$CUR_V" ]; then
