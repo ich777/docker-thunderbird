@@ -15,7 +15,7 @@ else
 			sleep infinity
 		fi
 	else
-		LAT_V="$TUNDERBIRD_V"
+		LAT_V="$THUNDERBIRD_V"
 	fi
 fi
 
