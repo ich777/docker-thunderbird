@@ -47,9 +47,9 @@ docker run --name Thunderbird -d \
 
 Unraid: close the console, edit the template and create a variable with the `Key`: `TURBOVNC_PARAMS` and leave the `Value` empty, click `Add` and `Apply`.
 
-All other platforms running Docker: create a environment variable `TURBOVNC_PARAMS` that is empty or simply leave it empty:
+All other platforms running Docker: create a environment variable `TURBOVNC_PARAMS` that is empty or like this:
 ```
-    --env 'TURBOVNC_PARAMS='
+    --env 'TURBOVNC_PARAMS=-securitytypes VNC'
 ```
 
 This Docker was mainly edited for better use with Unraid, if you don't use Unraid you should definitely try it!
