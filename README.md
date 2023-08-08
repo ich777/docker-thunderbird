@@ -1,11 +1,11 @@
 # Thunderbird in Docker optimized for Unraid
-This container will download and install Thunderbird brom the prefered branch and language.
+This container will download and install Thunderbird from the preferred branch and language.
 
 >**UPDATE:** Please use the built in updater to update Thunderbird itself.
 
 >**ATTENTION:** If you want to change the language, you have to delete every file in the 'thunderbird' directory except the 'profile' folder.
 
-RESOLUTION: You can also change the resolution from the WebGUI, to do that simply click on 'Show more settings...' (on a resolution change it can occour that the screen is not filled entirely with the Thunderbird window, simply restart the container and it will be fullscreen again).
+RESOLUTION: You can also change the resolution from the WebGUI, to do that simply click on 'Show more settings...' (on a resolution change it can occur that the screen is not filled entirely with the Thunderbird window, simply restart the container and it will be fullscreen again).
 
 ## Env params
 | Name | Value | Example |
