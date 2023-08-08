@@ -49,6 +49,7 @@ fi
 }
 
 if [ -z "$CUR_V" ]; then
+  echo "---Thunderbird not found!---"
   download_thunderbird
 elif [ "$LATEST_DL" == "true" ]; then
   download_thunderbird
