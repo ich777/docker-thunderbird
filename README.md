@@ -1,7 +1,7 @@
 # Thunderbird in Docker optimized for Unraid
-This container will download and install Thunderbird in the preferred version and language.
+This container will download and install Thunderbird brom the prefered branch and language.
 
->**UPDATE:** The container will check on every restart if there is a newer version available.
+>**UPDATE:** Please use the built in updater to update Thunderbird itself.
 
 >**ATTENTION:** If you want to change the language, you have to delete every file in the 'thunderbird' directory except the 'profile' folder.
 
@@ -11,7 +11,7 @@ RESOLUTION: You can also change the resolution from the WebGUI, to do that simpl
 | Name | Value | Example |
 | --- | --- | --- |
 | DATA_DIR | Folder for Thunderbird | /thunderbird |
-| THUNDERBIRD_V | Enter your preferred Thunderbird version or 'latest' to install the latest version | latest |
+| THUNDERBIRD_V | Enter your preferred Thunderbird branch 'latest' or 'beta' are allowed | latest |
 | THUNDERBIRD_LANG | Enter your preferred Thunderbird language you can get a full list here: https://archive.mozilla.org/pub/thunderbird/releases/latest/README.txt | en-US |
 | CUSTOM_RES_W | Enter your preferred screen width | 1280 |
 | CUSTOM_RES_H | Enter your preferred screen height | 768 |
