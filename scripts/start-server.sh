@@ -3,51 +3,57 @@ export DISPLAY=:99
 export XAUTHORITY=${DATA_DIR}/.Xauthority
 
 CUR_V="$(${DATA_DIR}/thunderbird --version 2>/dev/null | cut -d ' ' -f3)"
-if [ -z "$CUR_V" ]; then
-	if [ "${THUNDERBIRD_V}" == "latest" ]; then
-		LAT_V="102.2.2"
-	fi
+if [ "${THUNDERBIRD_V}" == "latest" ]; then
+  if [ ! -f ${DATA_DIR}/latest_branch ]; then
+    LATEST_DL=true
+  fi
+elif [ "${THUNDERBIRD_V}" == "beta" ]; then
+  if [ ! -f ${DATA_DIR}/beta_branch ]; then
+    BETA_DL=true
+  fi
 else
-	if [ "${THUNDERBIRD_V}" == "latest" ]; then
-		LAT_V="$CUR_V"
-		if [ -z "$LAT_V" ]; then
-			echo "Something went horribly wrong with version detection, putting container into sleep mode..."
-			sleep infinity
-		fi
-	else
-		LAT_V="$THUNDERBIRD_V"
-	fi
+  echo "---The Thunderbird version can only be \"latest\" or \"beta\", putting container in sleep mode---"
+  sleep infinity
 fi
-
-THUNDERBIRD_V=$LAT_V
 
 rm -R ${DATA_DIR}/Thunderbird-*.tar.bz2 2>/dev/null
 
+download_thunderbird() {
+if [ "${LATEST_DL}" == "true" ]; then
+  echo "---Thunderbird not installed, installing---"
+  cd ${DATA_DIR}
+  find . -maxdepth 1 ! -name profile ! -name .vnc -exec rm -rf {} \; 2>/dev/null
+  if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2 "https://download.mozilla.org/?product=thunderbird-latest&os=linux64&lang=$THUNDERBIRD_LANG" ; then
+    echo "---Sucessfully downloaded Thunderbird \"latest\"---"
+  else
+    echo "---Something went wrong, can't download Thunderbird \"latest\", putting container in sleep mode---"
+    sleep infinity
+  fi
+  tar -C ${DATA_DIR} --strip-components=1 -xf ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2
+  rm -R ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2
+  touch ${DATA_DIR}/latest_branch
+elif [ "${BETA_DL}" == "true" ]; then
+  echo "---Thunderbird not installed, installing---"
+  cd ${DATA_DIR}
+  find . -maxdepth 1 ! -name profile ! -name .vnc -exec rm -rf {} \; 2>/dev/null
+  if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2 "https://download.mozilla.org/?product=thunderbird-beta-latest-SSL&os=linux64&lang=$THUNDERBIRD_LANG" ; then
+    echo "---Sucessfully downloaded Thunderbird \"latest\"---"
+  else
+    echo "---Something went wrong, can't download Thunderbird \"latest\", putting container in sleep mode---"
+    sleep infinity
+  fi
+  tar -C ${DATA_DIR} --strip-components=1 -xf ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2
+  rm -R ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2
+  touch ${DATA_DIR}/beta_branch
+fi
+}
+
 if [ -z "$CUR_V" ]; then
-	echo "---Thunderbird not installed, installing---"
-	cd ${DATA_DIR}
-	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Thunderbird-$LAT_V-$THUNDERBIRD_LANG.tar.bz2 "https://archive.mozilla.org/pub/thunderbird/releases/${THUNDERBIRD_V}/linux-x86_64/${THUNDERBIRD_LANG}/thunderbird-${THUNDERBIRD_V}.tar.bz2" ; then
-		echo "---Sucessfully downloaded Thunderbird---"
-	else
-		echo "---Something went wrong, can't download Thunderbird, putting container in sleep mode---"
-		sleep infinity
-	fi
-	tar -C ${DATA_DIR} --strip-components=1 -xf ${DATA_DIR}/Thunderbird-$LAT_V-$THUNDERBIRD_LANG.tar.bz2
-	rm -R ${DATA_DIR}/Thunderbird-$LAT_V-$THUNDERBIRD_LANG.tar.bz2
-elif [ "$CUR_V" != "$LAT_V" ]; then
-	echo "---Version missmatch, installed v$CUR_V, downloading and installing latest v$LAT_V...---"
-    cd ${DATA_DIR}
-	find . -maxdepth 1 ! -name profile ! -name .vnc -exec rm -rf {} \; 2>/dev/null
-	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Thunderbird-$LAT_V-$THUNDERBIRD_LANG.tar.bz2 "https://archive.mozilla.org/pub/thunderbird/releases/${THUNDERBIRD_V}/linux-x86_64/${THUNDERBIRD_LANG}/thunderbird-${THUNDERBIRD_V}.tar.bz2" ; then
-		echo "---Sucessfully downloaded Thunderbird---"
-	else
-		echo "---Something went wrong, can't download Thunderbird, putting container in sleep mode---"
-		sleep infinity
-	fi
-	tar -C ${DATA_DIR} --strip-components=1 -xf ${DATA_DIR}/Thunderbird-$LAT_V-$THUNDERBIRD_LANG.tar.bz2
-	rm -R ${DATA_DIR}/Thunderbird-$LAT_V-$THUNDERBIRD_LANG.tar.bz2
-#elif [ "$CUR_V" == "$LAT_V" ]; then
-#	echo "---Thunderbird v$CUR_V up-to-date---"
+  download_thunderbird
+elif [ "$LATEST_DL" == "true" ]; then
+  download_thunderbird
+elif [ "$BETA_DL" == "true" ]; then
+  download_thunderbird
 fi
 
 echo "---Preparing Server---"
