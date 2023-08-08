@@ -50,9 +50,9 @@ fi
 
 if [ -z "$CUR_V" ]; then
   download_thunderbird
-if [ "$LATEST_DL" == "true" ]; then
+elif [ "$LATEST_DL" == "true" ]; then
   download_thunderbird
-if [ "$BETA_DL" == "true" ]; then
+elif [ "$BETA_DL" == "true" ]; then
   download_thunderbird
 fi
 
