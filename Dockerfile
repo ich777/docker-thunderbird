@@ -1,4 +1,4 @@
-FROM ich777/novnc-baseimage:bullseye_amd64
+FROM ich777/novnc-baseimage
 
 LABEL org.opencontainers.image.authors="admin@minenet.at"
 LABEL org.opencontainers.image.source="https://github.com/ich777/docker-thunderbird"
