@@ -20,7 +20,7 @@ rm -R ${DATA_DIR}/Thunderbird-*.tar.bz2 2>/dev/null
 
 download_thunderbird() {
 if [ "${LATEST_DL}" == "true" ]; then
-  echo "---Thunderbird not installed, installing---"
+  echo "---Downloading Thunderbird \"latest\"---"
   cd ${DATA_DIR}
   find . -maxdepth 1 ! -name profile ! -name .vnc -exec rm -rf {} \; 2>/dev/null
   if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2 "https://download.mozilla.org/?product=thunderbird-latest&os=linux64&lang=$THUNDERBIRD_LANG" ; then
@@ -33,13 +33,13 @@ if [ "${LATEST_DL}" == "true" ]; then
   rm -R ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2
   touch ${DATA_DIR}/latest_branch
 elif [ "${BETA_DL}" == "true" ]; then
-  echo "---Thunderbird not installed, installing---"
+  echo "---Downloading Thunderbird \"beta\"---"
   cd ${DATA_DIR}
   find . -maxdepth 1 ! -name profile ! -name .vnc -exec rm -rf {} \; 2>/dev/null
   if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2 "https://download.mozilla.org/?product=thunderbird-beta-latest-SSL&os=linux64&lang=$THUNDERBIRD_LANG" ; then
-    echo "---Sucessfully downloaded Thunderbird \"latest\"---"
+    echo "---Sucessfully downloaded Thunderbird \"beta\"---"
   else
-    echo "---Something went wrong, can't download Thunderbird \"latest\", putting container in sleep mode---"
+    echo "---Something went wrong, can't download Thunderbird \"beta\", putting container in sleep mode---"
     sleep infinity
   fi
   tar -C ${DATA_DIR} --strip-components=1 -xf ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2
