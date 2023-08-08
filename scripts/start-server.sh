@@ -32,7 +32,7 @@ if [ "${LATEST_DL}" == "true" ]; then
   tar -C ${DATA_DIR} --strip-components=1 -xf ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2
   rm -R ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2
   touch ${DATA_DIR}/latest_branch
-if [ "${BETA_DL}" == "true" ]; then
+elif [ "${BETA_DL}" == "true" ]; then
   echo "---Thunderbird not installed, installing---"
   cd ${DATA_DIR}
   find . -maxdepth 1 ! -name profile ! -name .vnc -exec rm -rf {} \; 2>/dev/null
