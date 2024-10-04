@@ -23,7 +23,7 @@ if [ "${LATEST_DL}" == "true" ]; then
   echo "---Downloading Thunderbird \"latest\"---"
   cd ${DATA_DIR}
   find . -maxdepth 1 ! -name profile ! -name .vnc -exec rm -rf {} \; 2>/dev/null
-  if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2 "https://download.mozilla.org/?product=thunderbird-latest&os=linux64&lang=$THUNDERBIRD_LANG" ; then
+  if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/Thunderbird-$THUNDERBIRD_V-$THUNDERBIRD_LANG.tar.bz2 "https://download.mozilla.org/?product=thunderbird-esr-latest&os=linux64&lang=$THUNDERBIRD_LANG" ; then
     echo "---Sucessfully downloaded Thunderbird \"latest\"---"
   else
     echo "---Something went wrong, can't download Thunderbird \"latest\", putting container in sleep mode---"
