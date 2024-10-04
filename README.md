@@ -11,7 +11,7 @@ RESOLUTION: You can also change the resolution from the WebGUI, to do that simpl
 | Name | Value | Example |
 | --- | --- | --- |
 | DATA_DIR | Folder for Thunderbird | /thunderbird |
-| THUNDERBIRD_V | Enter your preferred Thunderbird branch 'latest' or 'beta' are allowed | latest |
+| THUNDERBIRD_V | Enter your preferred Thunderbird branch 'latest' or 'beta' are allowed (latest will download the latest ESR branch on first start) | latest |
 | THUNDERBIRD_LANG | Enter your preferred Thunderbird language you can get a full list here: https://archive.mozilla.org/pub/thunderbird/releases/latest/README.txt | en-US |
 | CUSTOM_RES_W | Enter your preferred screen width | 1280 |
 | CUSTOM_RES_H | Enter your preferred screen height | 768 |
